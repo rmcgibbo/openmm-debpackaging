@@ -1,4 +1,4 @@
-openmm (5.2-0ubuntu1) sausy; urgency=low
+openmm (5.2-0ubuntu3) precise; urgency=low
 
   * Initial Ubuntu Packaging Release.
 

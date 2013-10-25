@@ -2,7 +2,15 @@ Source: openmm
 Priority: optional
 Section: libs
 Maintainer: rmcgibbo <rmcgibbo@gmail.com>
-Build-Depends: debhelper (>= 8), cmake
+Build-Depends: debhelper (>= 8),
+ cmake,
+ quilt,
+ nvidia-current,
+ ocl-icd-libopencl1 | libopencl1,
+ nvidia-cuda-toolkit,
+ mesa-common-dev,
+ doxygen,
+ swig
 Standards-Version: 3.9.3
 Homepage: https://simtk.org/home/openmm
 Vcs-Git: git://github.com/SimTk/openmm.git
@@ -25,13 +33,13 @@ Description: <insert up to 60 chars description>
 Package: libopenmm-cuda
 Section: libs
 Architecture: any
-Depends: libopenmm-dev, nvidia-319-updates-dev, libcufft5.0
+Depends: libopenmm-dev, nvidia-current, libcufft5.0
 Description: <insert up to 60 chars description>
  <insert long description, indented with spaces>
 
 Package: libopenmm-opencl
 Section: libs
 Architecture: any
-Depends: libopenmm-dev, libopencl1
+Depends: libopenmm-dev, libopencl1 | ocl-icd-libopencl1
 Description: <insert up to 60 chars description>
  <insert long description, indented with spaces>

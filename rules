@@ -13,7 +13,7 @@ CMAKE_FLAGS = \
         -DCMAKE_SHARED_LINKER_FLAGS_RELEASE="$(LDFLAGS)" \
         -DCMAKE_BUILD_TYPE=Release      \
         $(CMAKE_ARCH_FLAGS) \
-        -DCUDA_CUDA_LIBRARY=/usr/lib/nvidia-319-updates/libcuda.so \
+        -DCUDA_CUDA_LIBRARY=/usr/lib/nvidia-current/libcuda.so \
         -DOPENMM_BUILD_C_AND_FORTRAN_WRAPPERS=OFF \
 
 %:
