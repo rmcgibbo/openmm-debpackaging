@@ -1,0 +1,5 @@
+openmm (5.2-0ubuntu1) sausy; urgency=low
+
+  * Initial Ubuntu Packaging Release.
+
+ -- Robert McGibbon <rmcgibbo@gmail.com>  Thu, 24 Oct 2013 23:26:52 -0700

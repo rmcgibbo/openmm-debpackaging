@@ -1,0 +1,39 @@
+#!/usr/bin/make -f
+
+CPPFLAGS:=$(shell dpkg-buildflags --get CPPFLAGS)
+CFLAGS:=$(shell dpkg-buildflags --get CFLAGS) $(CPPFLAGS)
+CXXFLAGS:=$(shell dpkg-buildflags --get CXXFLAGS) $(CPPFLAGS)
+LDFLAGS:=$(shell dpkg-buildflags --get LDFLAGS) -Wl,--as-needed
+
+CMAKE_FLAGS = \
+        -DCMAKE_INSTALL_PREFIX=/usr/local/openmm \
+        -DCMAKE_VERBOSE_MAKEFILE=ON \
+        -DCMAKE_C_FLAGS_RELEASE="$(CFLAGS)" \
+        -DCMAKE_CXX_FLAGS_RELEASE="$(CXXFLAGS)" \
+        -DCMAKE_SHARED_LINKER_FLAGS_RELEASE="$(LDFLAGS)" \
+        -DCMAKE_BUILD_TYPE=Release      \
+        $(CMAKE_ARCH_FLAGS) \
+        -DCUDA_CUDA_LIBRARY=/usr/lib/nvidia-319-updates/libcuda.so \
+        -DOPENMM_BUILD_C_AND_FORTRAN_WRAPPERS=OFF \
+
+%:
+	dh $@ --with quilt --buildsystem=cmake
+
+override_dh_clean:
+	dh_clean -O--buildsystem=cmake
+
+override_dh_auto_configure:
+	dh_auto_configure -- $(CMAKE_FLAGS) $(CMAKE_ARCH_FLAGS)
+
+override_dh_auto_build:
+	dh_auto_build -- -j4
+
+override_dh_auto_test:
+	echo NOt running tests
+
+override_dh_shlibdeps:
+	dh_shlibdeps --dpkg-shlibdeps-params=--ignore-missing-info
+
+override_dh_usrlocal:
+	echo pass
+

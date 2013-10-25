@@ -1,0 +1,37 @@
+Source: openmm
+Priority: optional
+Section: libs
+Maintainer: rmcgibbo <rmcgibbo@gmail.com>
+Build-Depends: debhelper (>= 8), cmake
+Standards-Version: 3.9.3
+Homepage: https://simtk.org/home/openmm
+Vcs-Git: git://github.com/SimTk/openmm.git
+Vcs-Browser: https://github.com/simtk/openmm
+
+Package: libopenmm
+Section: libs
+Architecture: any
+Depends: libfftw3-3
+Description: <insert up to 60 chars description>
+ <insert long description, indented with spaces>
+
+Package: libopenmm-dev
+Section: libs
+Architecture: any
+Depends: libopenmm
+Description: <insert up to 60 chars description>
+ <insert long description, indented with spaces>
+
+Package: libopenmm-cuda
+Section: libs
+Architecture: any
+Depends: libopenmm-dev, nvidia-319-updates-dev, libcufft5.0
+Description: <insert up to 60 chars description>
+ <insert long description, indented with spaces>
+
+Package: libopenmm-opencl
+Section: libs
+Architecture: any
+Depends: libopenmm-dev, libopencl1
+Description: <insert up to 60 chars description>
+ <insert long description, indented with spaces>
