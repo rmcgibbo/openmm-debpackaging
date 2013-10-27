@@ -29,7 +29,7 @@ Now you should have a layout like
 for going to the next step you need to just the source only package:
 
 ```
-pkg-buildpackage -S
+dpkg-buildpackage -S
 ```
 
 
