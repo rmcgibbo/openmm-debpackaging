@@ -1,1 +1,1 @@
-usr/local/openmm/lib/plugins/libOpenMM*OpenCL.so
+usr/lib/openmm/lib/plugins/libOpenMM*OpenCL.so

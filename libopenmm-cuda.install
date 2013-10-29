@@ -1,1 +1,1 @@
-usr/local/openmm/lib/plugins/libOpenMM*CUDA.so
+usr/lib/openmm/lib/plugins/libOpenMM*CUDA.so

@@ -1,0 +1,13 @@
+Index: openmm/olla/src/Platform.cpp
+===================================================================
+--- openmm.orig/olla/src/Platform.cpp	2013-10-29 15:27:04.915842254 -0700
++++ openmm/olla/src/Platform.cpp	2013-10-29 15:29:02.667840193 -0700
+@@ -272,7 +272,7 @@
+     }
+ #else
+     if (dir == NULL)
+-        directory = "/usr/local/openmm/lib/plugins";
++        directory = "/usr/lib/openmm/lib/plugins";
+     else
+         directory = string(dir);
+ #endif

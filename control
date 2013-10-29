@@ -5,7 +5,10 @@ Maintainer: rmcgibbo <rmcgibbo@gmail.com>
 Build-Depends: debhelper (>= 8),
  cmake,
  quilt,
- nvidia-current,
+ libfftw3-dev,
+ python2.7, python2.7-dev,
+ libcuda1-dev | libcuda1 | nvidia-current,
+ nvidia-cuda-toolkit,
  ocl-icd-libopencl1 | libopencl1,
  nvidia-cuda-toolkit,
  mesa-common-dev,
@@ -20,26 +23,41 @@ Package: libopenmm
 Section: libs
 Architecture: any
 Depends: libfftw3-3
-Description: <insert up to 60 chars description>
- <insert long description, indented with spaces>
+Description: High-performance molecular simulation library
+ OpenMM is a software toolkit for performing molecular simulations on a range
+ of high performance computing architectures. It is based on a layered
+ architecture: the lower layers function as a reusable library that can be
+ invoked by any application, while the upper layers form a complete environment
+ for running molecular simulations.
+
 
 Package: libopenmm-dev
 Section: libs
 Architecture: any
 Depends: libopenmm
-Description: <insert up to 60 chars description>
- <insert long description, indented with spaces>
+Description: C++ header files for the OpenMM library
+ OpenMM is a software toolkit for performing molecular simulations on a range
+ of high performance computing architectures. This package provides C++ header
+ files for the development  with that library.
+
 
 Package: libopenmm-cuda
 Section: libs
 Architecture: any
 Depends: libopenmm-dev, nvidia-current, libcufft5.0
-Description: <insert up to 60 chars description>
- <insert long description, indented with spaces>
+Description: OpenMM library NVIDIA CUDA Platform
+ OpenMM is a software toolkit for performing molecular simulations on a range
+ of high performance computing architectures. This package provides the
+ libraries for simulation on NVIDIA graphical processing units with the
+ CUDA platform.
+
 
 Package: libopenmm-opencl
 Section: libs
 Architecture: any
 Depends: libopenmm-dev, libopencl1 | ocl-icd-libopencl1
-Description: <insert up to 60 chars description>
- <insert long description, indented with spaces>
+Description: OpenMM library OpenCL Platform
+ OpenMM is a software toolkit for performing molecular simulations on a range
+ of high performance computing architectures. This package provides the
+ libraries for simulation on CPU and GPU processors using the OpenCL
+ platform.

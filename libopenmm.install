@@ -1,2 +1,3 @@
-usr/local/openmm/lib/*.so
-usr/local/openmm/lib/plugins/libOpenMMPME.so
+usr/lib/openmm/lib/*.so
+usr/lib/openmm/lib/plugins/libOpenMMPME.so
+
