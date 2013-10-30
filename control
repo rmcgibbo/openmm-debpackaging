@@ -61,3 +61,12 @@ Description: OpenMM library OpenCL Platform
  of high performance computing architectures. This package provides the
  libraries for simulation on CPU and GPU processors using the OpenCL
  platform.
+
+Package: python-openmm
+Section: contrib/python
+Architecture: any
+Depends: libopenmm
+Description: Python bindings for the OpenMM molecular simulation package
+ OpenMM is a software toolkit for performing molecular simulations on a range
+ of high performance computing architectures. This package provides the
+ python application layer for the package.

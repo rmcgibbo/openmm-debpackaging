@@ -4,9 +4,9 @@ CPPFLAGS:=$(shell dpkg-buildflags --get CPPFLAGS)
 CFLAGS:=$(shell dpkg-buildflags --get CFLAGS) $(CPPFLAGS)
 CXXFLAGS:=$(shell dpkg-buildflags --get CXXFLAGS) $(CPPFLAGS)
 LDFLAGS:=$(shell dpkg-buildflags --get LDFLAGS) -Wl,--as-needed
-
-# Note the CUDA_CUDA_LIBRARY path might have to be updated
-# for new releases of nvidia-current on apt
+UBUNTU_NVIDIA_DIR=$(shell sed -n '/^\/usr\/lib\//{p;q}' /etc/ld.so.conf.d/$(DEB_BUILD_MULTIARCH)_GL.conf)
+OPENMM_INCLUDE_PATH:=$(CURDIR)/debian/tmp/usr/lib/openmm/include
+OPENMM_LIB_PATH:=$(CURDIR)/debian/tmp/usr/lib/openmm/lib
 
 CMAKE_FLAGS = \
         -DCMAKE_INSTALL_PREFIX=/usr/lib/openmm \
@@ -16,7 +16,7 @@ CMAKE_FLAGS = \
         -DCMAKE_SHARED_LINKER_FLAGS_RELEASE="$(LDFLAGS)" \
         -DCMAKE_BUILD_TYPE=Release      \
         $(CMAKE_ARCH_FLAGS) \
-        -DCUDA_CUDA_LIBRARY=/usr/lib/nvidia-304/libcuda.so \
+        -DCUDA_CUDA_LIBRARY=$(UBUNTU_NVIDIA_DIR)/libcuda.so \
         -DOPENMM_BUILD_AMOEBA_PLUGIN=ON \
         -DOPENMM_BUILD_RPMD_PLUGIN=ON \
         -DOPENMM_BUILD_DRUDE_PLUGIN=ON \
@@ -34,6 +34,13 @@ override_dh_auto_configure:
 
 override_dh_auto_build:
 	dh_auto_build -- VERBOSE=1
+
+override_dh_auto_install:
+	dh_auto_install -O--buildsystem=cmake
+	cd  obj-*/python; \
+	export OPENMM_INCLUDE_PATH=$(OPENMM_INCLUDE_PATH); \
+	export OPENMM_LIB_PATH=$(OPENMM_LIB_PATH); \
+	/usr/bin/python setup.py build install --install-layout=deb --root=$(CURDIR)/debian/tmp
 
 override_dh_auto_test:
 	echo "Skipping tests"
