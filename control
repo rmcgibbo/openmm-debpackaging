@@ -2,11 +2,11 @@ Source: openmm
 Priority: optional
 Section: libs
 Maintainer: rmcgibbo <rmcgibbo@gmail.com>
-Build-Depends: debhelper (>= 8),
+Build-Depends: debhelper (>= 9),
  cmake,
  quilt,
  libfftw3-dev,
- python2.7, python2.7-dev,
+ python-all-dev,
  libcuda1-dev | libcuda1 | nvidia-current,
  nvidia-cuda-toolkit,
  ocl-icd-libopencl1 | libopencl1,
@@ -65,7 +65,7 @@ Description: OpenMM library OpenCL Platform
 Package: python-openmm
 Section: contrib/python
 Architecture: any
-Depends: libopenmm
+Depends: libopenmm, ${python:Depends}
 Description: Python bindings for the OpenMM molecular simulation package
  OpenMM is a software toolkit for performing molecular simulations on a range
  of high performance computing architectures. This package provides the
